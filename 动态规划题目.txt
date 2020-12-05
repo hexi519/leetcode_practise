@@ -1,6 +1,6 @@
 https://www.luogu.org/problemnew/show/P1048 采药（01背包）
 https://www.luogu.org/problemnew/show/P1734 最大约数和（01背包） 【明天把两种筛法都做一下】
-https://www.luogu.org/problemnew/show/P1049 装箱问题（01背包） 【】
+https://www.luogu.org/problemnew/show/P1049 装箱问题（01背包）
 
 有约束的01背包
 https://www.luogu.org/problemnew/show/P2663 越越的组队（01背包）
