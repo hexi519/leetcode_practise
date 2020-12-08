@@ -9,7 +9,7 @@ from typing import Dict, List
 from util import *
 
 import numpy as np
-
+"""
 #* Version1 :orginal Out of Time Limit version
 class Solution:
     def canCross(self, stones: List[int]) -> bool:
@@ -65,13 +65,6 @@ class Solution:
 #* Version 3 : 相比于version2，只走走得通的路
 class Solution:
     def canCross(self, stones):
-        """
-        >>> s = Solution()
-        >>> s.canCross([0,1,3,5,6,8,12,17])
-        True
-        >>> s.canCross([0,1,2,3,4,8,9,11])
-        False
-        """
         import collections
         dic = collections.defaultdict(set)
         dic[0].add(0)
@@ -84,3 +77,25 @@ class Solution:
                         dic[stones[i]+val-1].add(val-1)
                     dic[stones[i]+val+1].add(val+1)
         return stones[-1] in dic
+
+#* Version 4 : Version3的进一步代码上的精简，只走走得通的路，且只存有效的stone_pos的信息。但后者其实只是减少了内存开销，遍历的开销没有下下去，且还多了一些控制，所以速度稍微慢了一点，由version3的70%降低到只beat %60
+"""
+class Solution:
+    def canCross(self, stones):
+        """
+        >>> s = Solution()
+        >>> s.canCross([0,1,3,5,6,8,12,17])
+        True
+        >>> s.canCross([0,1,2,3,4,8,9,11])
+        False
+        """
+        if stones[1] != 1:
+            return False
+        d = {x: set() for x in stones}
+        d[1].add(1)
+        for x in stones[:-1]:
+            for j in d[x]:
+                for k in range(j-1, j+2):       # py3中range 和 xrange结合起来了，which means range也是一个生成器而非直接返回一个数组了
+                    if k > 0 and x+k in d:
+                        d[x+k].add(k)
+        return bool(d[stones[-1]])
