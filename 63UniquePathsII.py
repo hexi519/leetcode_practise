@@ -34,28 +34,25 @@ class Solution:
         sol = np.array([[0] * colNum for _ in range(rowNum)])
 
         sol[0] = 1
-        sol[:,0] = 1
+        sol[:, 0] = 1
 
-        for rowIdx,row in enumerate(obstacleGrid):
-            for colIdx,col in enumerate(row):
+        for rowIdx, row in enumerate(obstacleGrid):
+            for colIdx, col in enumerate(row):
                 if col == 1:
-                    if colIdx ==0:
+                    if colIdx == 0:
                         # sol[rowIdx:][colIdx] = -1     # TODO 这样写就是不行...索引...
-                        sol[rowIdx:,colIdx] = -1
-                    if rowIdx ==0:
-                        sol[rowIdx,colIdx:] = -1
-                    
-                    sol[rowIdx][colIdx] = -1
+                        sol[rowIdx:, colIdx] = -1
+                    if rowIdx == 0:
+                        sol[rowIdx, colIdx:] = -1
 
+                    sol[rowIdx][colIdx] = -1
 
         # print(f"sol is {sol}")
 
         for row in range(1, rowNum):
-            for col in range(1,colNum):
-                if(sol[row][col]==-1): continue
-                sol[row][col] += sol[row][col -
-                                          1] if sol[row][col - 1] != -1 else 0
-                sol[row][col] += sol[row -
-                                     1][col] if sol[row - 1][col] != -1 else 0
+            for col in range(1, colNum):
+                if (sol[row][col] == -1): continue
+                sol[row][col] += sol[row][col - 1] if sol[row][col - 1] != -1 else 0
+                sol[row][col] += sol[row - 1][col] if sol[row - 1][col] != -1 else 0
 
-        return sol[-1][-1] if sol[-1][-1] !=-1 else 0
+        return sol[-1][-1] if sol[-1][-1] != -1 else 0
