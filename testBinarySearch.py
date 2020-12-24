@@ -1,6 +1,8 @@
 from typing import Dict, List
 
-
+"""
+#* 左闭右闭在寻找左边界和寻找右边界的时候,是对称的,所以非常好记忆.所以以后统一用左闭右闭的形式.
+"""
 class Solution:
     # 找target, 如果存在多个，返回最左边的，否则返回-1。 左闭右开的写法
     def testBinarySearch_LeftNoBigger1(self, nums: List, target: int) -> int:
