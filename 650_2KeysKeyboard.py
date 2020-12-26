@@ -7,16 +7,9 @@
 
 from typing import Dict, List
 from util import *
-
 class Solution:
     def minSteps(self, n: int) -> int:
-        """
-        >>> s = Solution()
-        >>> s.minSteps(18)
-        8
-        >>> s.minSteps(12)
-        7
-        """
+
         dp = [n]*(n+1)
         dp[1]=0     # 这里要注意，最终值是1，会在循环里面更新
         from math import sqrt
@@ -29,24 +22,65 @@ class Solution:
             另一种方法是直接找最大公因子。由于找的是最大的因子，所以不能从sqrt(n)递减遍历了，得从i开始递减。但是由于i-j>=j，所以可以优化到从i/2开始递减。（这里又有两种实现方法，如下）
             """
             # method1
-            """
             for j in range(int(i/2),int(sqrt(i))-1,-1):   # 这里的上下界想清楚    # int是fix()取整
                 if not i%j:
                     dp[i]=dp[j]+int(i/j)
                     break
             if(dp[i]==n):
                 dp[i]=i
-            """
             # method2
+            """
             for j in range(int(i/2),1,-1):      # 顺带连边界情况都考虑进来了
                 if not i%j:
                     dp[i]=dp[j]+int(i/j)
                     break
+            """
         return dp[n]
-
-
-if __name__ == "__main":
+"""
+if __name__ == "__main__":
     print("here is main")
     s = Solution()
     print(f"res is {s.minSteps(18)}")
     print(f"res is {s.minSteps(12)}")
+"""
+
+class Solution:
+    def minSteps(self, n: int) -> int:
+        """
+        >>> s = Solution()
+        >>> s.minSteps(3)
+        3
+        >>> s.minSteps(1)
+        0
+        >>> s.minSteps(18)
+        8
+        >>> s.minSteps(12)
+        7
+        >>> s.minSteps(7)
+        7
+        """
+        # return 0 if n==1
+        from collections import defaultdict
+        # dp, helper = [2000] * (n + 1), [set() for _ in range(n + 1)]
+        # dp[1] = 0
+        # helper[1].add(0)
+        dp = [defaultdict(lambda: 2000) for _ in range(n + 1)]
+        dp[1][0] = 0
+        for curNum in range(n + 1):
+            for pasteNum in dp[curNum].keys():
+                if curNum + pasteNum < n + 1:
+                    dp[curNum + pasteNum][pasteNum] = min(dp[curNum][pasteNum] + 1,
+                                                          dp[curNum + pasteNum][pasteNum])
+                    # helper[curNum + pasteNum].add(pasteNum)
+            if curNum * 2 < n + 1 and len(dp[curNum]):
+                dp[curNum * 2][curNum] = min(min(dp[curNum].values()) + 2, dp[curNum * 2][curNum])
+                # helper[curNum * 2].add(curNum)
+
+            # print(f"curNum:{curNum}:\n\tdp is {dp}")
+            # print(f"curNum:{curNum}:\n\tdp is {dp} \n\thelper is {helper}")
+
+        return min(dp[-1].values())
+
+# if __name__ == "__main__":
+#     s = Solution()
+#     print(f"res is {s.minSteps(7)}")
