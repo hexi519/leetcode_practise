@@ -3,7 +3,7 @@
 * 查找边界的模板分两种 -- 上边界和下边界 
     * 左闭右闭的模板比较好记，所以这里采用左闭右闭上
     * python也有自带的二分查找函数 bisect库
-* 查找某个数 和 查找边界 的模板任意一个 是可以并在一起的
+* 查找某个数 和 查找边界 的模板任意一个 是可以并在一起的 (下文中的bisect是和bisect_right合并的)
 """
 
 class Solution():
@@ -56,6 +56,35 @@ class Solution():
                 left = mid + 1
             else:  # target == nums[mid]
                 left = mid + 1
+
+        return left # 返回left还是right都一样，反正退出条件就是二者相等
+
+    def bisect(self, nums, target):
+        """
+        查找上边界: 最小的大于target的数的下标。 0<=res<=len(nums)
+            无论nums中是否有target这个元素，都返回第一个比target大的元素的位置
+        >>> s = Solution()
+        >>> s.bisect([1,2,2,2,4,4,5],2)
+        4
+        >>> s.bisect([1,2,2,2,4,4,5],3)
+        -1
+        >>> s.bisect([1,2,2,2,4,4,5],0)
+        -1
+        """
+        left, right = 0, len(nums)
+        if right == 0: return -1  # 数组为空的时候返回-1
+        while (left < right):  # 其实下面的三种情况可以合并成两种，但是为了思路清晰
+            mid = (left + right) // 2  # C++需要这么写：mid = left + (right - left) // 2, 但是python的int无限大就不需要
+            if target < nums[mid]:
+                right = mid
+            elif target > nums[mid]:
+                left = mid + 1
+            else:  # target == nums[mid]
+                left = mid + 1
+        
+        #* 查找边界和查找具体某个数 只要对结果加一个判断即可
+        if left==0 or nums[left-1]!=target:   # 之所以是left-1是因为默认找的是右边界. 前面left==0说明第一个比target大的居然是头一个元素，也就是说没找到呗
+            return -1
 
         return left # 返回left还是right都一样，反正退出条件就是二者相等
 
