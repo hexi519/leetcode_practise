@@ -81,11 +81,10 @@ class Solution(object):
             if not self.visited[fromNode]: 
                 self.count+=1
                 self.visited[fromNode]=True
-            self.dfs(fromNode)
+            self.dfs_recursive(fromNode)
         return self.count
 
-    # TODO dfs的两种形式我都忘了..
-    def dfs(self, fromNode):
+    def dfs_recursive(self, fromNode):
         for toNode in range(self.cityNum):
             if self.isConnected[fromNode][toNode] and not self.visited[toNode] :  # 连接着 且 还没被着色过(还需要遍历)
                 self.visited[toNode]=True
