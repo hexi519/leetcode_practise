@@ -29,12 +29,6 @@ class Solution:
         
         return root 
 
-    def traverse_tree(self, s):
-        """for test"""
-        if s:
-            return f"#{s.val} {self.traverse_tree(s.left)} {self.traverse_tree(s.right)}"
-        return None
-
 ################################
 ########### 栈的代码 ##########
 ################################

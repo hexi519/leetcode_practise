@@ -10,7 +10,7 @@ from util import *
 from loguru import logger as log
 
 class Solution(object):
-    # iterative
+    # iterative  反正每次cur都在变位置，不是向左走就是向右走
     def inorderTraversal(self, root):   # with the help of a stack
         """
         >>> sol = Solution()
@@ -23,10 +23,17 @@ class Solution(object):
         >>> sol.inorderTraversal(tt)
         [4, 3, 5]
         """
-        nodeStack,res = [],[]  # first push right and then mid, finally left
-        if root is None: return res
-        nodeStack.append(root)
-        cur = root.left
+        nodeStack,res,cur= [],[],root
+        while len(nodeStack) or cur:    # 要有个 or cur的case对应的是 根节点被弹出来，此时nodeStack为空
+            if cur :
+                nodeStack.append(cur)
+                cur = cur.left 
+            else:
+                cur = nodeStack.pop()   # 第二次弹出来或者没有左子节点才压进去
+                res.append(cur.val)
+                cur = cur.right
+        return res
+
         # ! while里面尽量不要套while...能用单次解决的，就让他单次...别套。套了就会像下面这样纠结错掉...
         """
         while len(nodeStack):
@@ -45,21 +52,6 @@ class Solution(object):
                 cur = cur.right
                 log.info(f"cur前进到{cur.val}")
         """
-        while len(nodeStack) or cur:  # 有可能遍历到整棵树的根节点，which means 栈空，但是还没有处理完
-            if cur:    # 防止上一次弹出的节点无右子节点，得接着弹
-                # log.info(f"压入左子节点 {cur.val}，且cur前进到{cur.left.val}")
-                nodeStack.append(cur)
-                cur = cur.left
-            else:
-                cur = nodeStack.pop()
-                res.append(cur.val)
-                cur = cur.right
-        return res
-        # while len(nodeStack):
-        #     cur = nodeStack.pop()
-        #     res.
-
-    """
     # recursive
     def inorderTraversal(self, root):   # with the help of a stack
         def help_recur( root, res):
@@ -81,11 +73,9 @@ class Solution(object):
         help_recur(root,res)
         log.info(f"res is {res}")
         return res
-    """
     # morris
     """
         其实左神的morris遍历是真的不错，省去了冗余代码。但是我的morris遍历就比较便于阅读
-    """
     """
     def inorderTraversal(self, root):
         res = []
@@ -119,4 +109,3 @@ class Solution(object):
                 就要往右子树移动，第二次遍历打印就是中序遍历。
             2. 在Morris遍历中，每一次cur都在变换位置，就没有不变的时候
         return res
-            """
