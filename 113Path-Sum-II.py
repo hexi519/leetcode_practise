@@ -53,28 +53,21 @@ class Solution:
         help_rec(root)
         return res
 
-    """
-    # iter
-    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+    # iterasive 
+    #! 心得：别看iterasive似乎很多空间，但其实recursive更多！(牵扯到很多数据的copy...此外还有栈开销...)
+    # 一开始没写出来iterasive的，没有往栈里面记录信息，所以很多信息在节点中无法传递
+    def pathSum(self, root, s): 
+        if not root:
+            return []
         res = []
-        path = []
-        tmpSum = 0
-        nodeStack = [root]
-        while len(nodeStack):
-            cur = nodeStack.pop()
-            path.append(cur.val)
-            tmpSum += cur.val
-            print(f"path is {path} and tmpSum is {tmpSum}")
-            if cur.right:
-                nodeStack.append(cur.right)
-            if cur.left:
-                nodeStack.append(cur.left)
-
-            if tmpSum == sum:
-                res.append(path)
-
-            if not cur.right and not cur.left:
-                tmp = path.pop()
-                tmpSum -= val
+        #* 因为有时候从一个节点到另一个节点，路径会突变，所以栈里面把路径信息也放进去
+        stack = [(root, [root.val])]
+        while stack:
+            curr, ls = stack.pop()
+            if not curr.left and not curr.right and sum(ls) == s:
+                res.append(ls)
+            if curr.right:
+                stack.append((curr.right, ls+[curr.right.val]))
+            if curr.left:
+                stack.append((curr.left, ls+[curr.left.val]))
         return res
-        """

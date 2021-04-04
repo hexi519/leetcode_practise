@@ -44,7 +44,7 @@ class Solution(object):
         fromPar, toPar = self.findPar(fromNode), self.findPar(toNode)
         if fromPar != toPar:
             if self.rank[fromPar] < self.rank[toPar]:
-                self.par[fromPar] = self.par[toPar]     # TODO 要注意的的点(一开始写错了) 是修改根节点的父节点和秩，而不是修改当前节点！union中只修改根节点，find路径压缩的时候才修改当前节点
+                self.par[fromPar] = self.par[toPar]     #! 要注意的的点(一开始写错了) 是修改根节点的父节点和秩，而不是修改当前节点！union中只修改根节点，find路径压缩的时候才修改当前节点
                 self.rank[fromPar] += 1
             else:
                 self.par[toPar] = self.par[fromPar]
@@ -56,6 +56,7 @@ class Solution(object):
         return self.par[node]
 
 #* dfs
+
 class Solution(object):
     def findCircleNum(self, isConnected):
         """
@@ -77,7 +78,7 @@ class Solution(object):
         self.isConnected = isConnected
         # 遍历每一条边，如果有连接，dfs
         for fromNode in range(self.cityNum):
-            # self.dfs( formNode,toNode )     # TODO 这样写就思路没有清晰，dfs在这题里面不应该从一条边开始，而是应该从一个点开始
+            # self.dfs( formNode,toNode )     # TODO record: 这样写就思路没有清晰，dfs在这题里面不应该从一条边开始，而是应该从一个点开始
             if not self.visited[fromNode]: 
                 self.count+=1
                 self.visited[fromNode]=True
