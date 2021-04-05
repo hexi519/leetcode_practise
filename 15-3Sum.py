@@ -80,8 +80,8 @@ class Solution:
                     r -= 1
                 elif number+nums[l]+nums[r] < 0:
                     l += 1
-                    while l+1 < len(nums) and nums[l-1] == nums[l]:
-                        l += 1
+                    # while l+1 < len(nums) and nums[l-1] == nums[l]:
+                    #     l += 1
                 else:
                     res.append([nums[cur], nums[l], nums[r]])
                     l += 1
