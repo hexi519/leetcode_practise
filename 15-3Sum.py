@@ -55,7 +55,7 @@ class Solution:
 
 
 
-# 上面的更快，但是下面的这个更符合书写规范，也就是while里面不要套while
+# 上面的更快，但是下面的这个更elegant，也就是while里面不要套while
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         if len(nums) < 3:
