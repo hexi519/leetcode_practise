@@ -30,7 +30,7 @@ class Solution:
         if not left:    return right    
         if not right:   return left
         
-        """
+        """ original codes suck
         ans = None
 
         def helpFind(root, p, q):   # true or false --> tuple(False,False)
