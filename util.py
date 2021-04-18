@@ -67,3 +67,38 @@ linkB = ListNode(4)
 # Bnn = ListNode(5)
 # linkB.next, Bn.next = Bn, Bnn
 linkB.next = linkA
+
+
+""" oj输入
+
+# 输入输入
+s = input()
+s = [i for i in s.split()]
+print(s)
+
+
+# 两行输入
+while True:
+    s = input()
+    if s != "":
+        length = int(s)
+        nums = [int(i) for i in input().split()]
+        print(length, nums)
+        break
+    else:
+        break
+
+# 第一行输入操作个数，下面输入n个数组
+data = []
+length = int(input())
+n = 0
+while n < length:
+    s = input()
+    if s != "":
+        temp = [i for i in s.split()]
+        data.append(temp)
+        n = n + 1
+    else:
+        break
+print(data)
+"""
