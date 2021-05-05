@@ -1,4 +1,23 @@
-############# Definition for a binary tree node. #############
+######################################
+############# Functions #############
+######################################
+import sys, os
+# ============ print ============
+# Disable
+def blockPrint():
+    sys.stdout = open(os.devnull, 'w')
+# Restore
+def enablePrint():
+    sys.stdout = sys.__stdout__
+
+# ============ ipdb ============
+def blockIpdb():
+	pass
+
+######################################
+############# Data Structures #########
+######################################
+# ============ Definition for a binary tree node. ============
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -46,7 +65,7 @@ skew.right.left, skew.right.right = skew_left_, skew_right_
 null    5
       2   1
 '''
-############# Definition for a linked list. #############
+# ============ Definition for a linked list. ============
 
 
 class ListNode:
