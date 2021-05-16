@@ -9,16 +9,35 @@ from typing import Dict, List
 from util import *
 from loguru import logger as log
 
-import ipdb
-ipdb.set_trace=blockIpdb
-
+# ipdb.set_trace = blockIpdb
 blockPrint()
 enablePrint()
 
-做一版只缩小或者平移窗口,不扩大窗口的版本
-https://leetcode-cn.com/problems/minimum-size-subarray-sum/solution/chang-du-zui-xiao-de-zi-shu-zu-by-leetcode-solutio/632436
 
-# TODO 总结 连续子数组 O(n)相关的解法 可以往 前缀和 和 双指针 这边去靠
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        """
+        >>> s = Solution()
+        >>> s.minSubArrayLen(15,[2,14])
+        2
+        >>> s.minSubArrayLen(7,[2,3,1,2,4,3])
+        2
+        >>> s.minSubArrayLen(4,[1,4,4])
+        1
+        >>> s.minSubArrayLen(11,[1,1,1,1,1,1,1,1])
+        0
+        """
+        curSum,ans = 0,len(nums) + 1
+        s, f = 0, 0
+        while f < len(nums):
+            # 加上
+            curSum += nums[f]
+            f += 1
 
+            # s前移
+            while curSum >= target and s < len(nums):
+                ans = min(ans, f - s)
+                curSum -= nums[s]
+                s += 1
 
-556 跟下一个permutation有点像
+        return 0 if ans == len(nums) + 1 else ans

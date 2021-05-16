@@ -11,8 +11,10 @@ def enablePrint():
     sys.stdout = sys.__stdout__
 
 # ============ ipdb ============
+import ipdb
 def blockIpdb():
-	pass
+    pass
+
 
 ######################################
 ############# Data Structures #########
@@ -69,23 +71,43 @@ null    5
 
 
 class ListNode:
-    def __init__(self, x):
+    def __init__(self, x=0,next=None):
         self.val = x
-        self.next = None
+        self.next = next
+    
+    def __str__(self):
+        cur = self
+        repre = ""
+        while cur:
+            repre+=f"{cur.val}-->"
+            # print(cur.val,end="-->")
+            cur=cur.next
+        
+        return repre
 
 
-# 没有重复数字的链表  3->4->5
+# 没有重复数字的链表  3->4->5->6
 linkA = ListNode(3)
 An = ListNode(4)
 Ann = ListNode(5)
+Annn = ListNode(6)
 linkA.next, An.next = An, Ann
-
-# 与linkA相交的linkB（有重复数字） 3->3->4->5
+Ann.next = Annn
+# 与linkA相交的linkB（有重复数字） 
+# 4->3->4->5    4->linkA
 linkB = ListNode(4)
 # Bn = ListNode(4)
 # Bnn = ListNode(5)
 # linkB.next, Bn.next = Bn, Bnn
 linkB.next = linkA
+
+# 有重复数字的linkC
+# 4->4->5
+linkC = ListNode(4)
+Cn = ListNode(4)
+Cnn = ListNode(5)
+linkC.next, Cn.next = Cn, Cnn
+# linkB.next = linkA
 
 
 """ oj输入
