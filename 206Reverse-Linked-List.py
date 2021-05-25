@@ -22,22 +22,17 @@ enablePrint()
 #         self.next = next
 class Solution:
     # iterasive
+    # 我这个插入的方法不是很主流，每次要修改三根link，主流的每次只要修改1次，所以我的时间复杂度比较高
     def reverseList(self, head: ListNode) -> ListNode:
         """
-        [3,4,5]   
-                   cur                      cur
-        dummy->None 3->4->5  dummy->1->None  3->4
+        [3,4,5]    cur                         cur
+                    V                           V
+        dummy->None 3->4->5->6  dummy->3->None  4->5->6
         """
         cur = head
         dummy = ListNode()
         while cur:
-            log.info(f"cur is {cur.val}")
-            log.info(f"\tcur.next is {cur.next.val if cur.next else None}")
-            log.info(f"\tdummy.next is {dummy.next.val if dummy.next else None}")
-            dummy.next, cur, cur.next = cur, cur.next, dummy.next
-            print(dummy)
-            print(cur)
-
+            dummy.next, cur.next ,cur = cur, dummy.next,cur.next
         return dummy.next
 
 

@@ -80,9 +80,7 @@ class ListNode:
         repre = ""
         while cur:
             repre+=f"{cur.val}-->"
-            # print(cur.val,end="-->")
             cur=cur.next
-        
         return repre
 
 
@@ -93,6 +91,7 @@ Ann = ListNode(5)
 Annn = ListNode(6)
 linkA.next, An.next = An, Ann
 Ann.next = Annn
+
 # 与linkA相交的linkB（有重复数字） 
 # 4->3->4->5    4->linkA
 linkB = ListNode(4)

@@ -44,7 +44,7 @@ class Solution:
         ans = []
         for curIndex in range(1, lenArr):
             # log.info(f"curIndex is {curIndex}({nums[curIndex]})")
-            while len(mq) and nums[mq[-1]] <= nums[curIndex]:  # TODO 这里 等于也是没有意义的
+            while len(mq) and nums[mq[-1]] <= nums[curIndex]: 
                 # log.info(f"mq[-1] is {mq[-1]}")
                 mq.pop()
             mq.append(curIndex)
