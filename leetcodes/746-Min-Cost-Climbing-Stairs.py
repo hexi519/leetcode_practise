@@ -15,6 +15,7 @@ from loguru import logger as log
 blockPrint()
 enablePrint()
 
+
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         """
@@ -25,12 +26,14 @@ class Solution:
         6
         """
         num_stair = len(cost)
-        if num_stair<2: 
+        if num_stair < 2:
             return cost[-1]
 
-        res = [0 for _ in range(num_stair+1)]
-        res[0],res[1] = cost[0],cost[1]
-        for i in range(2,num_stair):
-            res[i] = min(res[i-1],res[i-2])+cost[i]
-        
-        return min(res[-2],res[-3])
+        # res = [0 for _ in range(num_stair+1)]
+        res = [0 for _ in range(2)]  # space optimization
+        res[0], res[1] = cost[0], cost[1]
+        for i in range(2, num_stair):
+            tmpRes = min(res[0], res[1]) + cost[i]
+            res[0], res[1] = res[1], tmpRes
+
+        return min(res[0], res[1])

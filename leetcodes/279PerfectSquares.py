@@ -20,23 +20,26 @@ class Solution:
         # 2
         # >>> s.numSquares(0)
         # 0
-        ans = [n] * (n + 1)
-        ans[0]=0
+        
+        # 打表
+        squares = []
+        for i in range(1, int(n**0.5) + 1):
+            squares.append(i**2)
 
-        # 其实这样初始化也可以（简洁且方便
-        # for i in range(n + 1): ans[i] = i
+        from sys import maxsize as MAX_INT
+        dp = [MAX_INT for _ in range(n + 1)]
+        dp[0] = 0
+        for square in squares:
+            if square > n:
+                break
+            for digit in range(square, n + 1):
+                dp[digit] = min(dp[digit], dp[digit - square] + 1)
 
-        for digit in range(1, n + 1):
-            if int(sqrt(digit)) * int(sqrt(digit)) != digit:
-                continue
-            for num in range(digit, 1 + n):  # 多重背包
-                ans[num] = min(ans[num], ans[num - digit] + 1)  # not choose ,choose
-
-        return ans[n]
+        return dp[-1]
 """
 
 
-# solution 2: bfs
+# solution 2: bfs 快很多
 class Solution:
     def numSquares(self, n: int) -> int:
         """
