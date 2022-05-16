@@ -2,16 +2,23 @@
 ############# Functions #############
 ######################################
 import sys, os
+
+
 # ============ print ============
 # Disable
 def blockPrint():
     sys.stdout = open(os.devnull, 'w')
+
+
 # Restore
 def enablePrint():
     sys.stdout = sys.__stdout__
 
+
 # ============ ipdb ============
 import ipdb
+
+
 def blockIpdb():
     pass
 
@@ -56,31 +63,43 @@ tt.left, tt.right = tt_left, tt_right
 
 # * skew tree
 skew = TreeNode(3)
-skew_left, skew_right = None, TreeNode(5)
+skew_left, skew_right = None, TreeNode(-5)
 skew.left, skew.right = skew_left, skew_right
 skew_left_, skew_right_ = TreeNode(2), TreeNode(1)
 # skew.right.left, skew.right.right = skew_left_, skew_right_
 skew.right.left, skew.right.right = skew_left_, skew_right_
-
 ''' skew
     3      
-null    5
+null    -5
       2   1
+'''
+
+# * skew tree
+_skew = TreeNode(-10)
+_skew_left, _skew_right = TreeNode(9), TreeNode(20)
+_skew.left, _skew.right = _skew_left, _skew_right
+_skew_left_, _skew_right_ = TreeNode(15), TreeNode(7)
+# _skew.right.left, _skew.right.right = _skew_left_, _skew_right_
+_skew.right.left, _skew.right.right = _skew_left_, _skew_right_
+''' skew
+         -10      
+    9           20
+null null     15   7
 '''
 # ============ Definition for a linked list. ============
 
 
 class ListNode:
-    def __init__(self, x=0,next=None):
+    def __init__(self, x=0, next=None):
         self.val = x
         self.next = next
-    
+
     def __str__(self):
         cur = self
         repre = ""
         while cur:
-            repre+=f"{cur.val}-->"
-            cur=cur.next
+            repre += f"{cur.val}-->"
+            cur = cur.next
         return repre
 
 
@@ -92,7 +111,7 @@ Annn = ListNode(6)
 linkA.next, An.next = An, Ann
 Ann.next = Annn
 
-# 与linkA相交的linkB（有重复数字） 
+# 与linkA相交的linkB（有重复数字）
 # 4->3->4->5    4->linkA
 linkB = ListNode(4)
 # Bn = ListNode(4)
@@ -107,8 +126,6 @@ Cn = ListNode(4)
 Cnn = ListNode(5)
 linkC.next, Cn.next = Cn, Cnn
 # linkB.next = linkA
-
-
 """ oj输入
 
 # 输入输入
