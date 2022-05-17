@@ -75,12 +75,12 @@ null    -5
 '''
 
 # * skew tree
-_skew = TreeNode(-10)
-_skew_left, _skew_right = TreeNode(9), TreeNode(20)
-_skew.left, _skew.right = _skew_left, _skew_right
-_skew_left_, _skew_right_ = TreeNode(15), TreeNode(7)
-# _skew.right.left, _skew.right.right = _skew_left_, _skew_right_
-_skew.right.left, _skew.right.right = _skew_left_, _skew_right_
+less_skew = TreeNode(-10)
+less_skew_left, less_skew_right = TreeNode(9), TreeNode(20)
+less_skew.left, less_skew.right = less_skew_left, less_skew_right
+less_skew_left_, less_skew_right_ = TreeNode(15), TreeNode(7)
+# less_skew.right.left, less_skew.right.right = less_skew_left_, less_skew_right_
+less_skew.right.left, less_skew.right.right = less_skew_left_, less_skew_right_
 ''' skew
          -10      
     9           20
