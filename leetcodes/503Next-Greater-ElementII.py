@@ -23,13 +23,14 @@ class Solution:
         >>> s.nextGreaterElements([1,2,3,4,3])
         [2, 3, 4, -1, 4]
         """
-        lenNum = len(nums)
-        from collections import defaultdict
-        ans = defaultdict(lambda:-1)
-        ms = list() # mononic stack 单调递减栈 
-        for idx in range(lenNum*2):
-            while len(ms) and nums[ms[-1]]<nums[idx%lenNum]:
-                ans[ms.pop()]= nums[idx%lenNum]
-            ms.append( idx%lenNum )
+        idx = 0
+        lenNums = len(nums)
+        stack,res=[],[-1 for _ in range(lenNums)]
+        while idx < 2*lenNums: #and popNum<=lenNums :
+            while len(stack) and nums[stack[-1]]<nums[idx%lenNums]:
+                res[stack.pop()] = nums[idx%lenNums]
+
+            stack.append(idx%lenNums)
+            idx+=1
         
-        return [ ans[num] if ans[num]!=-1 else -1 for num in range(lenNum) ]     
+        return res   

@@ -2,7 +2,7 @@
 '''
 @Author  :   hesy 
 @Contact :   hesy519@gmail.com
-@Desc    :   [easy]
+@Desc    :   [easy] monotone stack
 '''
 
 from typing import Dict, List
