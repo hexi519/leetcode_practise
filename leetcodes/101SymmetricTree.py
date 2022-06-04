@@ -1,4 +1,4 @@
- # -*- encoding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 '''
 @Author  :   hesy 
 @Contact :   hesy519@gmail.com
@@ -7,6 +7,7 @@
 
 from typing import Dict, List
 from util import *
+
 
 ##############################
 ########### 剑指的思路，遍历完不需要再对比 ##########
@@ -37,18 +38,21 @@ class Solution:
 
         return compare(l, r)
 
+
 """
 ################################
 ########### my codes ##########
 ########### recursive ##########
 ################################
 # 走了两趟,一遍是root,left,right这么走;另一遍是root,right,left。然后对比看结果是否一致。
+#! 这题因为第二个case的特殊存在性，可以看出中序遍历不可，只有前序遍历才能区分出左右来（相应的，后续遍历也可以），因为这里 子节点在左还是在右是很关键的。【个人更喜欢这个做法...比较好理解】
 class Solution:
     def isSymmetric(self, root: TreeNode) -> bool:
         def traverse_tree(node, mode: bool):
             if not node: return None
             rl, rr = node.left, node.right
-            return f"#{node.val} {traverse_tree(rl,mode)} {traverse_tree(rr,mode)}" if mode else f"#{node.val} {traverse_tree(rr,mode)} {traverse_tree(rl,mode)}"
+            # return f"#{node.val} {traverse_tree(rl,mode)} {traverse_tree(rr,mode)}" if mode else f"#{node.val} {traverse_tree(rr,mode)} {traverse_tree(rl,mode)}"
+            return f"{node.val} {traverse_tree(rl,mode)} {traverse_tree(rr,mode)}" if mode else f"{node.val} {traverse_tree(rr,mode)} {traverse_tree(rl,mode)}"
 
         # print(
         #     f"2 travsercy is {traverse_tree(root,True)}@{traverse_tree(root,False)}"

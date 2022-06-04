@@ -26,24 +26,42 @@ def blockIpdb():
 ######################################
 ############# Data Structures #########
 ######################################
+
+
 # ============ Definition for a binary tree node. ============
+def preTraverse(root):  # root should be a TreeNode
+    if not root:
+        print('None', end='\t')
+        return
+
+    print(f"{root.val}", end='\t')
+    preTraverse(root.left)
+    preTraverse(root.right)
+
+
 class TreeNode:
+
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+        self.next = None
 
 
 # * BST
-BST = TreeNode(4)
-BST_left, BST_right = TreeNode(2), TreeNode(5)
-BST__left, BST__right = TreeNode(1), TreeNode(3)
+BST = TreeNode(7)
+BST_left, BST_right = TreeNode(2), TreeNode(8)
+BST__left, BST__right = TreeNode(1), TreeNode(5)
 BST.left, BST.right = BST_left, BST_right
-BST.left.left, BST.left.right = BST__left, BST__right
+BST_left.left = BST__left
+BST_right.right = BST__right
+BST__left.left = TreeNode(-1)
+BST__right.left, BST__right.right = TreeNode(4), TreeNode(6)
 ''' s
-        4
-   2        5
-1     3  null null
+                7
+        2             8
+    1      null  null    5
+-1  null               4   6
 '''
 BST_ = TreeNode(2)
 t_left, t_right = TreeNode(1), TreeNode(4)
@@ -86,10 +104,42 @@ less_skew.right.left, less_skew.right.right = less_skew_left_, less_skew_right_
     9           20
 null null     15   7
 '''
+
+# * deep tree -- dt
+dt = TreeNode(0)
+dt_left, dt_right = TreeNode(2), TreeNode(4)
+dt.left, dt.right = dt_left, dt_right
+dt.left.left = TreeNode(1)
+dt.left.left.left, dt.left.left.right = TreeNode(5), TreeNode(1)
+dt_right_l, dt_right_r = TreeNode(3), TreeNode(-1)
+dt_right.left, dt_right.right = dt_right_l, dt_right_r
+dt_right_l.right = TreeNode(6)
+dt_right_r.right = TreeNode(8)
+''' deep tree
+            0      
+      2             4
+  1     null     3      -1
+5   1         null 6 null 8
+'''
+
+# * sysmetric tree -- st
+st = TreeNode(0)
+st_left, st_right = TreeNode(4), TreeNode(4)
+st.left, st.right = st_left, st_right
+st.left.left, st.left.right = TreeNode(1), TreeNode(-3)
+st_right_l, st_right_r = TreeNode(-3), TreeNode(1)
+st_right.left, st_right.right = st_right_l, st_right_r
+''' sysmetric tree
+            0      
+      4             4
+  1     -3     -3      1
+'''
+
 # ============ Definition for a linked list. ============
 
 
 class ListNode:
+
     def __init__(self, x=0, next=None):
         self.val = x
         self.next = next
