@@ -96,13 +96,13 @@ null    -5
 less_skew = TreeNode(-10)
 less_skew_left, less_skew_right = TreeNode(9), TreeNode(20)
 less_skew.left, less_skew.right = less_skew_left, less_skew_right
-less_skew_left_, less_skew_right_ = TreeNode(15), TreeNode(7)
+less_skew_left_, less_skew_right_ = TreeNode(15), TreeNode(15)
 # less_skew.right.left, less_skew.right.right = less_skew_left_, less_skew_right_
 less_skew.right.left, less_skew.right.right = less_skew_left_, less_skew_right_
 ''' skew
          -10      
     9           20
-null null     15   7
+null null     15   15
 '''
 
 # * deep tree -- dt
@@ -111,15 +111,15 @@ dt_left, dt_right = TreeNode(2), TreeNode(4)
 dt.left, dt.right = dt_left, dt_right
 dt.left.left = TreeNode(1)
 dt.left.left.left, dt.left.left.right = TreeNode(5), TreeNode(1)
-dt_right_l, dt_right_r = TreeNode(3), TreeNode(-1)
+dt_right_l, dt_right_r = TreeNode(-1), TreeNode(-1)
 dt_right.left, dt_right.right = dt_right_l, dt_right_r
-dt_right_l.right = TreeNode(6)
+dt_right_l.right = TreeNode(8)
 dt_right_r.right = TreeNode(8)
 ''' deep tree
             0      
       2             4
-  1     null     3      -1
-5   1         null 6 null 8
+  1     null     -1      -1
+5   1         null 8 null 8
 '''
 
 # * sysmetric tree -- st

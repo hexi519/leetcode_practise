@@ -20,8 +20,6 @@ class Solution:
         >>> s.search([3,1],3)
         0
         """
-        if not nums:
-            return -1
         low, high = 0, len(nums)
         while low < high:
             mid = (low + high) // 2
@@ -34,10 +32,10 @@ class Solution:
                 else:
                     low = mid + 1
             else:
-                upper = nums[high-1] if high == len(nums) else nums[high]
+                upper = nums[high - 1] if high == len(nums) else nums[high]
                 if nums[mid] < target <= upper:
                     low = mid + 1
                 else:
                     high = mid
 
-        return low if nums[low-1] == target else -1
+        return -1
